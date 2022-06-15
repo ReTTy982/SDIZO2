@@ -1,9 +1,8 @@
 #include "MatrixGraph.hpp"
 #include "Array.hpp"
-#define BRESET  "\x1B[0m"
+#define BRESET "\x1B[0m"
 #define BGREEN "\x1B[42m"
 #define BMAGNETA "\x1B[45m"
-
 
 using namespace std;
 
@@ -23,26 +22,24 @@ void MatrixGraph::addEdge(const size_t &from, const size_t &to, long long weight
             matrix[i].resize(edgesCount);
         }
     }
-    for (int i =0;i<matrix.get_array_size();i++){
-        if(i==from){
-            if(!isDirected){
-                matrix[i][to]=weight;
-            }
-            else{
-                matrix[i].push_back(0);
-            }
-        }
-        else if(i==to){
+    for (int i = 0; i < matrix.get_array_size(); i++)
+    {
+        if (i == from && from == to)
+        {
             matrix[i].push_back(weight);
         }
-        else{
+        else if (i == to)
+        {
+            matrix[i].push_back(weight);
+        }
+        else
+        {
             matrix[i].push_back(0);
         }
     }
-
 };
 
-const size_t MatrixGraph::getRowSize() 
+const size_t MatrixGraph::getColumns()
 {
     if (matrix.get_array_size() != 0)
         return matrix[0].get_array_size();
@@ -50,22 +47,25 @@ const size_t MatrixGraph::getRowSize()
         return 0;
 }
 
-const size_t MatrixGraph::getColumnSize(){
+const size_t &MatrixGraph::getVerSize() const
+{
     return matrix.get_array_size();
 }
 
-void MatrixGraph::print() 
+void MatrixGraph::print()
 {
-    const auto &count = getRowSize();
-    const auto &vertices = getColumnSize();
+    const auto &count = getColumns();
+    const auto &vertices = getVerSize();
 
-    if (vertices == 0) {
+    if (vertices == 0)
+    {
         std::cout << BGREEN << "Graf jest pusty!" << BRESET << std::endl;
         return;
     }
 
     std::cout << "   " << BGREEN;
-    for (size_t j = 0; j < count; j++) {
+    for (size_t j = 0; j < count; j++)
+    {
         std::cout << j << "  ";
 
         if (j < 10)
@@ -73,12 +73,14 @@ void MatrixGraph::print()
     }
     std::cout << BRESET << std::endl;
 
-    for (size_t i = 0; i < vertices; i++) {
+    for (size_t i = 0; i < vertices; i++)
+    {
         std::cout << BMAGNETA << i << BRESET << " ";
         if (i < 10)
             std::cout << " ";
 
-        for (size_t j = 0; j < count; j++) {
+        for (size_t j = 0; j < count; j++)
+        {
             std::cout << matrix[i][j] << " ";
 
             if (matrix[i][j] < 10 && matrix[i][j] > -1)

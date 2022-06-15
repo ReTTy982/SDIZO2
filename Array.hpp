@@ -31,7 +31,7 @@ public:
 
     void index_check(const std::size_t &index);
 
-    size_t get_array_size();
+    const size_t get_array_size() const;
 
     bool search(const T &value);
 

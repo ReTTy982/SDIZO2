@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Array.hpp"
-#include "iostream"
+#include <iostream>
 
 template <typename T>
 class BinHeap
@@ -23,3 +23,6 @@ public:
   void print();
   int look_for_index(const T &value);
 };
+
+
+#include "BinHeap.cpp"

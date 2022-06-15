@@ -6,11 +6,11 @@ int main(){
     MatrixGraph graph = MatrixGraph(true);
     graph.addEdge(0,1,4);
     graph.print();
-    graph.addEdge(0,2,5);
+    graph.addEdge(1,0,5);
     graph.print();
-    graph.addEdge(0,3,6);
+    graph.addEdge(2,0,6);
     graph.print();
-    graph.addEdge(0,4,8);
+    graph.addEdge(3,0,8);
     graph.print();
     cout << graph.matrix[1][0];
 

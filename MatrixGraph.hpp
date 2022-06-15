@@ -20,6 +20,6 @@ public:
 
     void print();
     void clear();
-    const size_t getRowSize();
-    const size_t getColumnSize();
+    const size_t getColumns();
+    const size_t &getVerSize() const;
 };

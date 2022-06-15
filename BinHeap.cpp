@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "BinHeap.hpp"
 
@@ -138,4 +139,3 @@ void BinHeap<T>::print()
     std::cout << std::endl;
 }
 
-template class BinHeap<int>;

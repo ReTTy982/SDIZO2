@@ -8,6 +8,7 @@ struct Edge{
         this->to = to;
         this->weight = weight;
     }
+    Edge(){};
     size_t from;
     size_t to;
     long long weight;

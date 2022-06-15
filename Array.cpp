@@ -162,7 +162,7 @@ bool Array<T>::search(const T &value)
     return false;
 }
 template <typename T>
-size_t Array<T>::get_array_size()
+const size_t Array<T>::get_array_size() const
 {
     return array_size;
 }
