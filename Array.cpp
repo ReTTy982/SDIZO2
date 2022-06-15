@@ -1,9 +1,10 @@
+#pragma once
 #include <iostream>
 #include "Array.hpp"
 typedef int datatype;
 
 template <typename T>
-Array<T>::Array(const int &size)
+Array<T>::Array(const size_t &size)
 {
     if (size == 0)
         return;
@@ -17,10 +18,18 @@ Array<T>::~Array()
 }
 
 template <typename T>
-void Array<T>::resize(const int &size)
+Array<T>::Array(const Array<T> &other)
+{
+    array_size = other.array_size;
+    array = new T[array_size];
+    std::copy(other.array, other.array + array_size, array);
+}
+
+template <typename T>
+void Array<T>::resize(const size_t &size)
 {
 
-    T *new_array = new T[size];
+    T *new_array = new T[size]();
 
     std::copy(array, array + std::min(array_size, size), new_array);
 
@@ -30,7 +39,7 @@ void Array<T>::resize(const int &size)
 }
 
 template <typename T>
-void Array<T>::print()
+void Array<T>::print() const
 {
     for (int i = 0; i < array_size; i++)
     {
@@ -42,6 +51,7 @@ void Array<T>::print()
 template <typename T>
 void Array<T>::push_back(const T &value)
 {
+    std::cout<<"PUSHIG:" << value << std::endl;
     resize(array_size + 1);
     array[array_size - 1] = value;
 }
@@ -60,7 +70,7 @@ void Array<T>::push_front(const T &value)
 }
 
 template <typename T>
-void Array<T>::index_check(const int &index)
+void Array<T>::index_check(const size_t &index)
 {
     if (index >= array_size)
     {
@@ -69,7 +79,7 @@ void Array<T>::index_check(const int &index)
 }
 
 template <typename T>
-void Array<T>::push(const T &value, const int &index)
+void Array<T>::push(const T &value, const size_t &index)
 {
     index_check(index);
 
@@ -92,7 +102,7 @@ void Array<T>::pop_index(const T &index)
     index_check(index);
 
     size_t new_size = array_size - 1;
-    int *new_array = new int[new_size];
+    T *new_array = new T[new_size];
 
     std::copy(array, array + index, new_array);
     std::copy(array + index + 1, array + array_size, new_array + index);
@@ -152,7 +162,7 @@ bool Array<T>::search(const T &value)
     return false;
 }
 template <typename T>
-int Array<T>::get_array_size()
+size_t Array<T>::get_array_size()
 {
     return array_size;
 }
@@ -170,4 +180,19 @@ T &Array<T>::get_value(const int &at)
     return array[at];
 }
 
-template class Array<int>;
+template <typename T>
+T &Array<T>::operator[](const size_t &at)
+{
+    if (at >= array_size)
+        throw std::out_of_range("Array index out of range");
+    return array[at];
+}
+template <typename T>
+auto Array<T>::operator=(const Array<T> &other) -> Array<T> &
+{
+    array_size = other.array_size;
+    array = new T[array_size];
+    std::copy(other.array, other.array + array_size, array);
+    return *this;
+}
+

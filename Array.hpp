@@ -5,16 +5,17 @@
 template <typename T>
 class Array
 {
-    int array_size = 0;
-    int *array = nullptr;
+    size_t array_size = 0;
+    T *array = nullptr;
 
 public:
-    Array(const int &size = 0);
+    Array(const std::size_t &size = 0);
+    Array(const Array<T> &other);
     ~Array();
 
-    void resize(const int &size);
+    void resize(const size_t &size);
 
-    void print();
+    void print() const;
 
     void push_back(const T &value);
 
@@ -24,13 +25,13 @@ public:
 
     void pop_front();
 
-    void push(const T &value, const int &index);
+    void push(const T &value, const std::size_t &index);
 
     void pop_index(const T &index);
 
-    void index_check(const int &index);
+    void index_check(const std::size_t &index);
 
-    int get_array_size();
+    size_t get_array_size();
 
     bool search(const T &value);
 
@@ -38,4 +39,10 @@ public:
 
     int get_index(const T &value);
     void pop(const T &value);
+
+    T &operator[](const std::size_t &at);
+    const T &operator[](const std::size_t &at) const;
+    Array &operator=(const Array &other);
 };
+
+#include "Array.cpp"

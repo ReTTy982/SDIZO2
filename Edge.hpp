@@ -1,11 +1,15 @@
 #pragma once
+#include <stdio.h>
 
 
 struct Edge{
-
-
-    unsigned int from;
-    unsigned int to;
+    Edge(size_t &from,size_t &to,long long weight){
+        this->from = from;
+        this->to = to;
+        this->weight = weight;
+    }
+    size_t from;
+    size_t to;
     long long weight;
     
 
