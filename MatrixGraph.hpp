@@ -21,5 +21,5 @@ public:
     void print();
     void clear();
     const size_t getColumns();
-    const size_t &getVerSize() const;
+    const size_t getVerSize() const ;
 };

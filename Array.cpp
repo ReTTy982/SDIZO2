@@ -162,7 +162,7 @@ bool Array<T>::search(const T &value)
     return false;
 }
 template <typename T>
-const size_t Array<T>::get_array_size() const
+const size_t Array<T>::get_array_size()  const
 {
     return array_size;
 }
@@ -184,7 +184,7 @@ template <typename T>
 T &Array<T>::operator[](const size_t &at)
 {
     if (at >= array_size)
-        throw std::out_of_range("Array index out of range");
+        throw std::out_of_range("Array index out of range!");
     return array[at];
 }
 template <typename T>
@@ -194,5 +194,14 @@ auto Array<T>::operator=(const Array<T> &other) -> Array<T> &
     array = new T[array_size];
     std::copy(other.array, other.array + array_size, array);
     return *this;
+}
+
+template<typename T>
+void Array<T>::fill(size_t index){
+    size_t size = get_array_size();
+    for(size;size<index;){
+        push_back(0);
+        size = get_array_size();
+    }
 }
 

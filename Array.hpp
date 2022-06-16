@@ -27,6 +27,8 @@ public:
 
     void push(const T &value, const std::size_t &index);
 
+    void fill(size_t index);
+
     void pop_index(const T &index);
 
     void index_check(const std::size_t &index);

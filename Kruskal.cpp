@@ -1,10 +1,10 @@
 #include "Kruskal.hpp"
 
 
-MatrixGraph Kruskal::generateMST(const MatrixGraph &graph){
+MatrixGraph Kruskal::generateMST(const MatrixGraph graph){
 
 
-    const auto &edges  = graph.getVerSize();
+    const size_t &edges  = graph.getVerSize();
 
 
     MatrixGraph mstGraph = MatrixGraph(false);
