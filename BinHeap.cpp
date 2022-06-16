@@ -46,22 +46,26 @@ void BinHeap<T>::push(const T &value)
 {
 
     array.push_back(value);
+
     int i = array.get_array_size() - 1;
+
     // Naprawa wlasnosci kopca, dopoki wstawiony element jest wiekszy od rodzica, zamieniaj
     // rodzica i dziecko
-    while (i != 0 && array.get_value(parent(i)) < array.get_value(i))
+    
+    while (i != 0 && array[parent(i)] < array[(i)])
     {
-        std::swap(array.get_value(i), array.get_value(parent(i)));
+        std::swap(array[(i)], array[parent(i)]);
         i = parent(i);
     }
 }
 
 template <typename T>
-bool BinHeap<T>::pop(const T &value)
+bool BinHeap<T>::pop(int index)
 {
-
     int max_index = array.get_array_size() - 1;
-    int index = look_for_index(value);
+
+    //std::cout << "JAKA WARTOSC: " <<array[index] << std::endl;
+    
 
     if (index < -1) // wartosci nie ma w kopcu
     {
@@ -69,7 +73,7 @@ bool BinHeap<T>::pop(const T &value)
     }
     // zamieniamy wartosc usuwanego wezla na wartosc ostatniego liscia kopca
     //  i zmniejszamy dlugosc kopca, usuwajac przy tym ostatni lisc
-    array.get_value(index) = array.get_value(max_index);
+    array[index] = array[max_index];
     array.resize(max_index);
 
     if (index == max_index) // usuwany wezel byl ostatnim lisciem kopca
@@ -79,11 +83,11 @@ bool BinHeap<T>::pop(const T &value)
 
     // naprawa kopca
 
-    if (index > 0 && array.get_value(index) > array.get_value(parent(index)))
+    if (index > 0 && array[index] > array[parent(index)])
     {
 
         // jesli wezel zamieniony jest wiekszy, zamieniamy wezel z jego kolejnymi rodzicami
-        std::swap(array.get_value(index), array.get_value(parent(index)));
+        std::swap(array[index], array[parent(index)]);
         index = parent(index);
     }
     else
@@ -93,19 +97,19 @@ bool BinHeap<T>::pop(const T &value)
             // w tej petli
             int temp = index; // kandydat na zmiane, bedzie to wieksze dziecko naszego wezla
 
-            if (left(index) < max_index && array.get_value(temp) < array.get_value(left(index)))
+            if (left(index) < max_index && array[temp] < array[left(index)])
             {
                 temp = left(index);
             }
 
-            if (right(index) < max_index && array.get_value(temp) < array.get_value(right(index)))
+            if (right(index) < max_index && array[temp] < array[right(index)])
             {
                 temp = right(index);
             }
 
             if (temp != index)
             {
-                std::swap(array.get_value(index), array.get_value(temp));
+                std::swap(array[index], array[temp]);
                 index = temp;
             }
             else
@@ -117,7 +121,16 @@ bool BinHeap<T>::pop(const T &value)
     }
     return true;
 }
+template <typename T>
+const Array<T> &BinHeap<T>::get_array() const{
+    return array;
+}
 
+template <typename T>
+const T &BinHeap<T>::top() const{
+    return array[0];
+}
+/*
 template <typename T>
 void BinHeap<T>::print()
 {
@@ -138,4 +151,4 @@ void BinHeap<T>::print()
 
     std::cout << std::endl;
 }
-
+*/

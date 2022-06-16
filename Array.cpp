@@ -51,7 +51,6 @@ void Array<T>::print() const
 template <typename T>
 void Array<T>::push_back(const T &value)
 {
-    std::cout<<"PUSHIG:" << value << std::endl;
     resize(array_size + 1);
     array[array_size - 1] = value;
 }
@@ -174,7 +173,7 @@ T &Array<T>::get_value(const int &at)
     if (at >= array_size)
     {
 
-        throw std::out_of_range("Array index out of range");
+        throw std::out_of_range("Array index out of range?");
     }
 
     return array[at];
@@ -183,8 +182,10 @@ T &Array<T>::get_value(const int &at)
 template <typename T>
 T &Array<T>::operator[](const size_t &at)
 {
-    if (at >= array_size)
+    if (at >= array_size){
+        std::cout <<std::endl<< at << " " << array_size;
         throw std::out_of_range("Array index out of range!");
+    }
     return array[at];
 }
 template <typename T>
@@ -194,6 +195,15 @@ auto Array<T>::operator=(const Array<T> &other) -> Array<T> &
     array = new T[array_size];
     std::copy(other.array, other.array + array_size, array);
     return *this;
+}
+
+
+template <typename T>
+const T &Array<T>::operator[](const size_t &at) const
+{
+    if (at >= array_size)
+        throw std::out_of_range("Array index out of range!!");
+    return array[at];
 }
 
 template<typename T>

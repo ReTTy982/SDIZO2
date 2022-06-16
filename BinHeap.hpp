@@ -16,12 +16,13 @@ public:
   void swap(T x, T y);
 
   void push(const T &value);
-  bool pop(const T &value);
+  bool pop( int index);
+  const T &top() const;
 
   bool search(const T &value);
   void print_array();
-  void print();
   int look_for_index(const T &value);
+  const Array<T> &get_array() const;
 };
 
 

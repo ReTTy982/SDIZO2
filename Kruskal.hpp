@@ -7,5 +7,5 @@
 
 class Kruskal{
     public:
-    MatrixGraph generateMST(const MatrixGraph graph);
+    MatrixGraph generateMST(const MatrixGraph &graph);
 };
