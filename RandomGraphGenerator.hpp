@@ -6,6 +6,7 @@
 #include <chrono>
 #include "MatrixGraph.hpp"
 #include <iterator>
+#include <bits/stdc++.h>
 
 static unsigned seed= std::chrono::steady_clock::now().time_since_epoch().count();
 static std::default_random_engine generator(seed);

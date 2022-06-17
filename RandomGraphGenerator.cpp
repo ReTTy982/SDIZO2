@@ -27,8 +27,8 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
         neededVert.push_back(i);
         aviableVert.push_back(i);
     }
-    std::random_shuffle(neededVert.begin(), neededVert.end());
-    std::random_shuffle(aviableVert.begin(), aviableVert.end());
+    std::shuffle(neededVert.begin(), neededVert.end(),generator);
+    std::shuffle(aviableVert.begin(), aviableVert.end(),generator);
     while (neededVert.size() != 1)
     {
         size_t from = neededVert.back();
@@ -85,7 +85,7 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
         }
         if (aviableTo.size() != 0)
         {
-            std::random_shuffle(aviableVert.begin(), aviableVert.end());
+            std::shuffle(aviableVert.begin(), aviableVert.end(),generator);
             graph.addEdge(from, aviableTo.back(), randomNumberWithinRange(1, MAX_COST));
 
             edges--;
