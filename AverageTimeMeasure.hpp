@@ -2,7 +2,7 @@
 #include <chrono>
 #pragma once
 
-template <typename T>
+
 class AverageTimeMeasure
 {
     std::chrono::high_resolution_clock::time_point start, end;
@@ -12,5 +12,5 @@ class AverageTimeMeasure
 public:
     void benchmarkStart();
     void benchmarkStop();
-    T getAvgElapsedNsec();
+    size_t getAvgElapsedNsec();
 };

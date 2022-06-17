@@ -8,8 +8,6 @@ using namespace std;
 
 void MatrixGraph::addEdge(const size_t &from, const size_t &to, long long weight)
 {
-    std::cout << "FROM: " << from << " "
-              << "TO: " << to << std::endl;
     size_t old_size;
     if (matrix.get_array_size() == 0)
     {

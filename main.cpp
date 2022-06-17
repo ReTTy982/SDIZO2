@@ -4,7 +4,9 @@
 #include "RandomGraphGenerator.hpp"
 using namespace std;
 
-int main(){
+int main()
+{
+    /*
     MatrixGraph graph = MatrixGraph(false);
     graph.addEdge(0,1,4);
     graph.addEdge(1,3,8);
@@ -17,6 +19,7 @@ int main(){
     graph.addEdge(4,6,6);
     graph.addEdge(5,6,2);
     graph.print();
+    */
     /*
     10 7
 0 1 4
@@ -31,21 +34,13 @@ int main(){
 5 6 2
 */
 
+    MatrixGraph graph = MatrixGraph(false);
+    RandomGraphGenerator<MatrixGraph>::random(graph, 8, 50, false);
+    graph.print();
 
-    Kruskal kruskal;
+    MatrixGraph graph_kurskal = Kruskal::generateMST(graph);
+    
 
-    MatrixGraph graph_kurskal = kruskal.generateMST(graph);
-    for(size_t i=0;i<graph_kurskal.getVerSize();i++){
-       const IndicenceMatrix &matrix = graph_kurskal.getMatrix();
-       std::cout << matrix[i].get_array_size()<<std::endl;
-    }
     graph_kurskal.print();
-
-
-    MatrixGraph randomGraph = MatrixGraph(false);
-
-    RandomGraphGenerator<MatrixGraph>::random(randomGraph,6,100,true);
-    randomGraph.print();
     return 0;
-
 }
