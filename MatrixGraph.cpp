@@ -44,7 +44,7 @@ void MatrixGraph::addEdge(const size_t &from, const size_t &to, long long weight
             }
 
             matrix[from][from] = weight;
-            std::cout << "CHECKA: " << std::endl;
+
         }
         else if (i == from)
         {
@@ -55,7 +55,7 @@ void MatrixGraph::addEdge(const size_t &from, const size_t &to, long long weight
                 matrix[i].fill(new_size);
             }
             matrix[from][to] = weight;
-            std::cout << "CHECKB: " << std::endl;
+
         }
         else
         {
@@ -64,9 +64,9 @@ void MatrixGraph::addEdge(const size_t &from, const size_t &to, long long weight
             {
                 matrix[i].fill(new_size);
             }
-            std::cout << "CHECKC: " << std::endl;
+
         }
-        std::cout << "NOWY SIZE: " << matrix[i].get_array_size() << std::endl;
+
     }
 }
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MatrixGraph.hpp"
 #include "Kruskal.hpp"
+#include "RandomGraphGenerator.hpp"
 using namespace std;
 
 int main(){
@@ -41,7 +42,10 @@ int main(){
     graph_kurskal.print();
 
 
+    MatrixGraph randomGraph = MatrixGraph(false);
 
+    RandomGraphGenerator<MatrixGraph>::random(randomGraph,6,100,true);
+    randomGraph.print();
     return 0;
 
 }
