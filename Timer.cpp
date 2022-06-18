@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const vector<size_t> graphSize = {50, 70, 100};
+const vector<size_t> graphSize = {50, 70, 100,120,150};
 const vector<size_t> fillFactor = {25, 50, 75, 99};
 
 const size_t datasetGenerationloops = 5;
@@ -28,6 +28,13 @@ void Timer::run()
     for(const auto &fill : fillFactor){
         for(const auto &size : graphSize){
             cout << size <<" " << generateMST<MatrixGraph,Kruskal>(size,fill) << "\n";
+        }
+        cout << endl;
+    }
+    cout << "MATRIX PRIMA\n";
+     for(const auto &fill : fillFactor){
+        for(const auto &size : graphSize){
+            cout << size <<" " << generateMST<MatrixGraph,Prim>(size,fill) << "\n";
         }
         cout << endl;
     }

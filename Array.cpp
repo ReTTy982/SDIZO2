@@ -6,9 +6,10 @@ typedef int datatype;
 template <typename T>
 Array<T>::Array(const size_t &size)
 {
-    if (size == 0)
+    if (size == 0){
         return;
-    array = new T[size];
+    }
+    array = new T[size]();
 }
 
 template <typename T>

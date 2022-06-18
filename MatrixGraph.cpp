@@ -53,6 +53,9 @@ void MatrixGraph::addEdge(const size_t &from, const size_t &to, long long weight
                 matrix[i].fill(new_size);
             }
             matrix[from][to] = weight;
+            if(!isDirected){
+                matrix[to][from]= weight;
+            }
 
         }
         else
