@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    /*
+    
     MatrixGraph graph = MatrixGraph(false);
     graph.addEdge(0,1,4);
     graph.addEdge(1,3,8);
@@ -20,8 +20,18 @@ int main()
     graph.addEdge(3,6,1);
     graph.addEdge(4,6,6);
     graph.addEdge(5,6,2);
+    graph.addEdge(0,1,5);
     graph.print();
-    */
+/*
+    MatrixGraph random_graph = MatrixGraph(false);
+    RandomGraphGenerator<MatrixGraph>::random(random_graph,5,99,false);
+    random_graph.print();
+    MatrixGraph prim = Prim::generateMST(random_graph);
+    prim.print();
+*/
+    
+
+    
     /*
     10 7
 0 1 4
@@ -45,18 +55,22 @@ int main()
 
         graph_kurskal.print();
         */
-    // Timer timer;
-    // timer.run();
+     Timer timer;
+     timer.run();
+/*
     MatrixGraph graph = MatrixGraph(false);
-    MatrixGraph graph1 = MatrixGraph(false);
-    RandomGraphGenerator<MatrixGraph>::random(graph, 4, 99, false);
-    //graph1 = graph;
+    RandomGraphGenerator<MatrixGraph>::random(graph, 6, 25, false);
     graph.print();
-    //graph1.print();
-    //MatrixGraph graph_prim = Prim::generateMST(graph);
-    MatrixGraph graph_kruskal = Kruskal::generateMST(graph);
-    //graph_prim.print();
+    MatrixGraph graph_prim = Prim::generateMST(graph);
+    graph_prim.print();
+    */
+/*
+    MatrixGraph graph1 = MatrixGraph(false);
+    RandomGraphGenerator<MatrixGraph>::random(graph1, 8, 25, false);
+    graph1.print();
+    MatrixGraph graph_kruskal = Kruskal::generateMST(graph1);
     graph_kruskal.print();
-
+    
+*/
     return 0;
 }

@@ -27,7 +27,6 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
             {
 
                 queue.push(Edge(vertex, edge, matrix[vertex][edge]));
-                std::cout << queue.top().weight << std::endl;
             }
         }
     }

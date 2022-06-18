@@ -31,4 +31,11 @@ void Timer::run()
         }
         cout << endl;
     }
+    cout << "MATRIX PRIMA\n";
+     for(const auto &fill : fillFactor){
+        for(const auto &size : graphSize){
+            cout << size <<" " << generateMST<MatrixGraph,Prim>(size,fill) << "\n";
+        }
+        cout << endl;
+    }
 }

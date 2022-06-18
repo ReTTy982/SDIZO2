@@ -1,7 +1,7 @@
 #pragma once
 #include "RandomGraphGenerator.hpp"
 
-const static size_t MAX_COST = 20;
+const static size_t MAX_COST = 100;
 
 
 
@@ -18,6 +18,10 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
 
     size_t edges;
     edges = vertexCount * (vertexCount - 1);
+
+    if(!isDirected){
+        edges /=2;
+    }
 
     edges *= 0.01 * fillFactor;
     std::vector<size_t> neededVert, seenFrom, seenTo, aviableVert;
@@ -36,38 +40,15 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
         size_t to = neededVert.back();
         seenFrom.push_back(from);
         seenTo.push_back(to);
-        graph.addEdge(from, to, randomNumberWithinRange(1, MAX_COST));
+        size_t weight = randomNumberWithinRange(1,MAX_COST);
+        graph.addEdge(from, to, weight);
+        if(!isDirected){
+            graph.addEdge(from,to,weight);
+            seenFrom.push_back(to);
+            seenTo.push_back(from);
+        }
         edges--;
-        /*
-                if (neededVert.size() % 2 == 0)
-                {
-                    std::cout << "SIZE:X " << neededVert.size() << std::endl;
-                    size_t from = neededVert.back();
-                    neededVert.pop_back();
-                    size_t to = neededVert.back();
-                    neededVert.pop_back();
-                    seenFrom.push_back(from);
-                    seenTo.push_back(to);
-                    graph.addEdge(from, to, randomNumberWithinRange(1, MAX_COST));
-                    edges--;
-                }
 
-                else
-                {
-                    size_t from = neededVert.back();
-                    std::cout << "FROM:X " << from << std::endl;
-                    neededVert.pop_back();
-                    size_t to = randomNumberWithinRange(0, vertexCount - 1);
-                    while (to == from)
-                    {
-                        to = randomNumberWithinRange(0, vertexCount - 1);
-                    }
-                    seenFrom.push_back(from);
-                    seenTo.push_back(to);
-                    graph.addEdge(from, to, randomNumberWithinRange(1, MAX_COST));
-                    edges--;
-                }
-                */
     }
     const IndicenceMatrix &matrix = graph.getMatrix();
     while (edges != 0)
@@ -86,7 +67,11 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
         if (aviableTo.size() != 0)
         {
             std::shuffle(aviableVert.begin(), aviableVert.end(),generator);
-            graph.addEdge(from, aviableTo.back(), randomNumberWithinRange(1, MAX_COST));
+            size_t weight = randomNumberWithinRange(1,MAX_COST);
+            graph.addEdge(from, aviableTo.back(), weight);
+            if(!isDirected){
+                graph.addEdge(aviableTo.back(),from, weight);
+            }
 
             edges--;
         }
@@ -95,21 +80,5 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
             aviableVert.pop_back();
         }
 
-        /*
-        std::cout << "EDGES: " << edges << std::endl;
-        size_t from = randomNumberWithinRange(0, vertexCount - 1);
-        size_t to = randomNumberWithinRange(0, vertexCount-1);
-        for (size_t i = 0; i < seenFrom.size(); i++)
-        {
-            while (seenFrom[i] == from && seenTo[i] == to)
-            {
-                to = randomNumberWithinRange(0, vertexCount-1);
-            }
-        }
-        graph.addEdge(from, to, randomNumberWithinRange(1, MAX_COST));
-        seenFrom.push_back(from);
-        seenTo.push_back(to);
-        edges--;
-        */
     }
 }

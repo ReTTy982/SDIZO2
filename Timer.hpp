@@ -5,6 +5,7 @@
 #include "RandomGraphGenerator.hpp"
 #include "AverageTimeMeasure.hpp"
 #include <vector>
+#include "Prim.hpp"
 
 using namespace std;
 
