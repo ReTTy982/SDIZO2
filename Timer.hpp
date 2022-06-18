@@ -14,8 +14,10 @@ typedef unsigned long long timedata;
 
 
 class Timer{
-template <typename Structure, typename Algorithm>    
-const size_t generateMST(const size_t &size, const size_t &fill);
+template <typename Algorithm>    
+const size_t generateMSTMatrix(const size_t &size, const size_t &fill);
+template <typename Algorithm>   
+const size_t generateMSTList(const size_t &size, const size_t &fill);
 
 
 

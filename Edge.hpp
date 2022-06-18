@@ -9,6 +9,11 @@ struct Edge{
         this->weight = weight;
     }
     Edge(){};
+    Edge(size_t &from,const size_t &to, const long long weight){
+        this->from = from;
+        this->to = to;
+        this->weight = weight;
+    }
     size_t from;
     size_t to;
     long long weight;

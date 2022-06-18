@@ -1,21 +1,19 @@
-#pragma once
 #include "RandomGraphGenerator.hpp"
 
 const static size_t MAX_COST = 100;
 
 
 
-template <typename T>
-size_t RandomGraphGenerator<T>::randomNumberWithinRange(const size_t &first, const size_t &second)
+
+size_t RandomGraphGenerator::randomNumberWithinRange(const size_t &first, const size_t &second)
 {
     std::uniform_int_distribution<size_t> distribution(first, second);
     return distribution(generator);
 }
 
-template <typename T>
-void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFactor, const bool &isDirected)
-{
 
+void RandomGraphGenerator::random(MatrixGraph &mgraph,ListGraph &lgraph, size_t vertexCount, size_t fillFactor, const bool &isDirected)
+{
     size_t edges;
     edges = vertexCount * (vertexCount - 1);
 
@@ -41,16 +39,17 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
         seenFrom.push_back(from);
         seenTo.push_back(to);
         size_t weight = randomNumberWithinRange(1,MAX_COST);
-        graph.addEdge(from, to, weight);
+        mgraph.addEdge(from, to, weight);
+        lgraph.addEdge(from,to,weight);
+        
         if(!isDirected){
-            graph.addEdge(from,to,weight);
             seenFrom.push_back(to);
             seenTo.push_back(from);
         }
         edges--;
 
     }
-    const IndicenceMatrix &matrix = graph.getMatrix();
+    const IndicenceMatrix &matrix = mgraph.getMatrix();
     while (edges != 0)
     {
 
@@ -68,10 +67,9 @@ void RandomGraphGenerator<T>::random(T &graph, size_t vertexCount, size_t fillFa
         {
             std::shuffle(aviableVert.begin(), aviableVert.end(),generator);
             size_t weight = randomNumberWithinRange(1,MAX_COST);
-            graph.addEdge(from, aviableTo.back(), weight);
-            if(!isDirected){
-                graph.addEdge(aviableTo.back(),from, weight);
-            }
+            mgraph.addEdge(from, aviableTo.back(), weight);
+            lgraph.addEdge(from,aviableTo.back(),weight);
+           
 
             edges--;
         }

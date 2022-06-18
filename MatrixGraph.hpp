@@ -14,7 +14,9 @@ class MatrixGraph
 public:
     IndicenceMatrix matrix;
     bool isDirected;
-    MatrixGraph(bool isDirected){};
+    MatrixGraph(bool isDirected){
+        this->isDirected = isDirected;
+    };
 
     void addEdge(const size_t &from, const size_t &to, long long weight);
 
