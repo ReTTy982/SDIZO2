@@ -51,8 +51,8 @@ void BinHeap<T>::push(const T &value)
 
     // Naprawa wlasnosci kopca, dopoki wstawiony element jest wiekszy od rodzica, zamieniaj
     // rodzica i dziecko
-    
-    while (i != 0 && array[parent(i)] < array[(i)])
+
+    while (i != 0 && array[parent(i)] > array[(i)])
     {
         std::swap(array[(i)], array[parent(i)]);
         i = parent(i);
@@ -64,8 +64,7 @@ bool BinHeap<T>::pop(int index)
 {
     int max_index = array.get_array_size() - 1;
 
-    //std::cout << "JAKA WARTOSC: " <<array[index] << std::endl;
-    
+    // std::cout << "JAKA WARTOSC: " <<array[index] << std::endl;
 
     if (index < -1) // wartosci nie ma w kopcu
     {
@@ -83,51 +82,44 @@ bool BinHeap<T>::pop(int index)
 
     // naprawa kopca
 
-    if (index > 0 && array[index] > array[parent(index)])
+    while (1)
     {
+        // w tej petli
+        int temp = index; // kandydat na zmiane, bedzie to wieksze dziecko naszego wezla
 
-        // jesli wezel zamieniony jest wiekszy, zamieniamy wezel z jego kolejnymi rodzicami
-        std::swap(array[index], array[parent(index)]);
-        index = parent(index);
-    }
-    else
-    {
-        while (1)
+        if (left(index) < max_index && array[temp] > array[left(index)])
         {
-            // w tej petli
-            int temp = index; // kandydat na zmiane, bedzie to wieksze dziecko naszego wezla
+            temp = left(index);
+        }
 
-            if (left(index) < max_index && array[temp] < array[left(index)])
-            {
-                temp = left(index);
-            }
+        if (right(index) < max_index && array[temp] > array[right(index)])
+        {
+            temp = right(index);
+        }
 
-            if (right(index) < max_index && array[temp] < array[right(index)])
-            {
-                temp = right(index);
-            }
+        if (temp != index)
+        {
+            std::swap(array[index], array[temp]);
+            index = temp;
+        }
+        else
+        {
 
-            if (temp != index)
-            {
-                std::swap(array[index], array[temp]);
-                index = temp;
-            }
-            else
-            {
-
-                break;
-            }
+            break;
         }
     }
+
     return true;
 }
 template <typename T>
-const Array<T> &BinHeap<T>::get_array() const{
+const Array<T> &BinHeap<T>::get_array() const
+{
     return array;
 }
 
 template <typename T>
-const T &BinHeap<T>::top() const{
+const T &BinHeap<T>::top() const
+{
     return array[0];
 }
 /*

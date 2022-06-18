@@ -8,8 +8,6 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
     const size_t &vert = graph.getVerSize();
     const IndicenceMatrix &matrix = graph.getMatrix();
 
-
-
     MatrixGraph mstGraph = MatrixGraph(false);
 
     BinHeap<Edge> queue;
@@ -29,7 +27,6 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
             {
 
                 queue.push(Edge(vertex, edge, matrix[vertex][edge]));
-
             }
         }
     }
@@ -42,7 +39,6 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
         const auto &parentA = unionArray.findNode(node.from);
 
         const auto &parentB = unionArray.findNode(node.to);
-
 
         if (parentA != parentB)
         {

@@ -2,10 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+<<<<<<< HEAD
       "name": "C/C++: g++.exe build and debug active file",
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+=======
+      "name": "C/C++: cpp.exe build and debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "C:/Users/polek/OneDrive/Pulpit/SDIZO2/sdizo2.exe",
+>>>>>>> 31efc24d1a0c358223d975db5af7fcce9e526abe
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
@@ -25,7 +32,11 @@
           "ignoreFailures": true
         }
       ],
+<<<<<<< HEAD
       "preLaunchTask": "C/C++: g++.exe build active file"
+=======
+      "preLaunchTask": "C/C++: cpp.exe build active file"
+>>>>>>> 31efc24d1a0c358223d975db5af7fcce9e526abe
     },
     {
       "name": "C/C++ Runner: Debug Session",
