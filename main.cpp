@@ -2,6 +2,8 @@
 #include "MatrixGraph.hpp"
 #include "Kruskal.hpp"
 #include "RandomGraphGenerator.hpp"
+#include "Timer.hpp"
+#include "Prim.hpp"
 using namespace std;
 
 int main()
@@ -33,14 +35,28 @@ int main()
 4 6 6
 5 6 2
 */
+    /*
+        MatrixGraph graph = MatrixGraph(false);
+        RandomGraphGenerator<MatrixGraph>::random(graph, 8, 50, false);
+        graph.print();
 
+        MatrixGraph graph_kurskal = Kruskal::generateMST(graph);
+
+
+        graph_kurskal.print();
+        */
+    // Timer timer;
+    // timer.run();
     MatrixGraph graph = MatrixGraph(false);
-    RandomGraphGenerator<MatrixGraph>::random(graph, 8, 50, false);
+    MatrixGraph graph1 = MatrixGraph(false);
+    RandomGraphGenerator<MatrixGraph>::random(graph, 4, 99, false);
+    //graph1 = graph;
     graph.print();
+    //graph1.print();
+    //MatrixGraph graph_prim = Prim::generateMST(graph);
+    MatrixGraph graph_kruskal = Kruskal::generateMST(graph);
+    //graph_prim.print();
+    graph_kruskal.print();
 
-    MatrixGraph graph_kurskal = Kruskal::generateMST(graph);
-    
-
-    graph_kurskal.print();
     return 0;
 }

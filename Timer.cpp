@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const vector<size_t> graphSize = {50, 70, 100};
+const vector<size_t> graphSize = {50, 70, 100,120,150};
 const vector<size_t> fillFactor = {25, 50, 75, 99};
 
 const size_t datasetGenerationloops = 5;
