@@ -61,4 +61,11 @@ void Timer::run()
         }
         cout << endl;
     }
+            cout << "LIST PRIM\n";
+     for(const auto &fill : fillFactor){
+        for(const auto &size : graphSize){
+            cout << size <<" " << generateMSTList<Prim>(size,fill) << "\n";
+        }
+        cout << endl;
+     }
 }

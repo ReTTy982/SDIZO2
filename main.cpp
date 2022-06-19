@@ -63,11 +63,20 @@ int main()
     Timer timer;
     timer.run();
     /*
-        MatrixGraph graph = MatrixGraph(false);
-        RandomGraphGenerator<MatrixGraph>::random(graph, 6, 25, false);
-        graph.print();
-        MatrixGraph graph_prim = Prim::generateMST(graph);
-        graph_prim.print();
+        MatrixGraph graph_matrix = MatrixGraph(false);
+        ListGraph graph_list = ListGraph(false);
+        std::cout <<"debuf"<< std::endl;
+        RandomGraphGenerator::random(graph_matrix,graph_list, 6, 50, false);
+        std::cout <<"debuf"<< std::endl;
+        graph_matrix.print();
+        std::cout <<"debuf"<< std::endl;
+        graph_list.print();
+        std::cout <<"debuf"<< std::endl;
+        MatrixGraph graph_prim_matrix = Prim::generateMST(graph_matrix);
+        std::cout <<"debuf"<< std::endl;
+        ListGraph graph_prim_list = Prim::generateMST(graph_list);
+        graph_prim_matrix.print();
+        graph_prim_list.print();
         */
     /*
         MatrixGraph graph1 = MatrixGraph(false);
