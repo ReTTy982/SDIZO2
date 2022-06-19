@@ -3,6 +3,13 @@
 #include <vector>
 
 #include "Kruskal.hpp"
+#include "Prim.hpp"
+#include "MatrixGraph.hpp"
+#include "ListGraph.hpp"
+#include "RandomGraphGenerator.hpp"
+#include "Timer.hpp"
+#include "Djikstra.hpp"
+#include "AverageTimeMeasure.hpp"
 #include "RandomGraphGenerator.hpp"
 
 using namespace std;
@@ -38,7 +45,7 @@ char getOptionFromUser()
 void mstMenu()
 {
     char input;
-    //ListGraph listGraph(false);
+    ListGraph listGraph(false);
     MatrixGraph matrixGraph(false);
 
 repeat:
@@ -55,32 +62,36 @@ repeat:
         return;
         break;
     case 'r':
-        //listGraph.clear();
+        listGraph.clear();
         matrixGraph.clear();
         //readFromFile(listGraph, matrixGraph);
         break;
     case 'x': {
-        //listGraph.clear();
+        listGraph.clear();
         matrixGraph.clear();
         cout << "Count: \n";
         auto count = getDataFromUser();
         cout << "Fill %: \n";
         auto fill = getDataFromUser();
-        RandomGraphGen::random(listGraph, matrixGraph, count, fill, false);
+        RandomGraphGenerator::random(matrixGraph, listGraph, count, fill, false);
         break;
     }
     case 'k': {
-        auto resultL = Kruskal::generateMst(listGraph);
-        resultL.print();
-        auto resultM = Kruskal::generateMst(matrixGraph);
-        resultM.print();
+        listGraph.print();
+        ListGraph kruskal_list = Kruskal::generateMST(listGraph);
+        kruskal_list.print();
+        matrixGraph.print();
+        MatrixGraph kruskal_matrix = Kruskal::generateMST(matrixGraph);
+        kruskal_matrix.print();
         break;
     }
     case 'p': {
-        auto resultL = Prima::generateMst(listGraph);
-        resultL.print();
-        auto resultM = Prima::generateMst(matrixGraph);
-        resultM.print();
+        listGraph.print();
+        ListGraph prim_list = Prim::generateMST(listGraph);
+        prim_list.print();
+        matrixGraph.print();
+        MatrixGraph matrix_prim = Prim::generateMST(matrixGraph);
+        matrix_prim.print();
         break;
     }
     case 'l':
@@ -95,8 +106,8 @@ repeat:
 
 void shortestPathMenu()
 {
-    ListGraph listGraph;
-    MatrixGraph matrixGraph;
+    ListGraph listGraph(true);
+    MatrixGraph matrixGraph(true);
     char input;
 
 repeat:
@@ -124,7 +135,7 @@ repeat:
         auto count = getDataFromUser();
         cout << "Fill %: \n";
         auto fill = getDataFromUser();
-        RandomGraphGen::random(listGraph, matrixGraph, count, fill);
+        RandomGraphGenerator::random(matrixGraph, listGraph, count, fill,true);
         break;
     }
     case 'b': {

@@ -83,7 +83,7 @@ int main()
 
     MatrixGraph graph = MatrixGraph(true);
     ListGraph graph1 = ListGraph(true);
-    RandomGraphGenerator::random(graph, graph1, 8, 25, true);
+    RandomGraphGenerator::random(graph, graph1, 8, 75, true);
     graph.print();
     Array<Node> djikstra_matrix = Djikstra::getShortestPath(graph, 1);
     for (size_t i = 0; i < djikstra_matrix.get_array_size(); i++)

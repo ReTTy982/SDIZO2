@@ -140,3 +140,7 @@ const IndicenceMatrix &MatrixGraph::getMatrix() const
 {
     return matrix;
 }
+
+void MatrixGraph::clear(){
+    matrix = IndicenceMatrix();
+}

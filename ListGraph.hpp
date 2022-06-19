@@ -26,6 +26,7 @@ public:
     void print() const;
     const size_t getVerSize() const;
     const Array<AdjacentEdge> &getArrayOfEdges(const size_t &vertex) const;
+    void clear();
 
 private:
     Array<Array<AdjacentEdge>> edges;
