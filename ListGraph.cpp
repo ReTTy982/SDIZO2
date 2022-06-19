@@ -57,6 +57,6 @@ auto ListGraph::getArrayOfEdges(const size_t &vertex) const ->const Array<Adjace
 }
 
 void ListGraph::clear(){
-    edgesCount = 0;
+    edges_count = 0;
     edges = Array<Array<AdjacentEdge>>();
 }

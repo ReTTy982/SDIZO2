@@ -6,6 +6,7 @@
 #include "Prim.hpp"
 #include "ListGraph.hpp"
 #include "Djikstra.hpp"
+#include "BellmanFord.hpp"
 using namespace std;
 
 int main()
@@ -96,5 +97,19 @@ int main()
     {
         std::cout << djikstra[i].current << " " << djikstra[i].weight << " " << djikstra[i].prev << std::endl;
     }
+    std::cout<<std::endl;
+    Array<Node> bellman_matrix = BellmanFord::getShortestPath(graph,1);
+     for (size_t i = 0; i < bellman_matrix.get_array_size(); i++)
+    {
+        std::cout << bellman_matrix[i].current << " " << bellman_matrix[i].weight << " " << bellman_matrix[i].prev << std::endl;
+    }
+    std::cout <<std::endl;
+    Array<Node> bellman_list = BellmanFord::getShortestPath(graph1,1);
+      for (size_t i = 0; i < bellman_list.get_array_size(); i++)
+    {
+        std::cout << bellman_list[i].current << " " << bellman_list[i].weight << " " << bellman_list[i].prev << std::endl;
+    }
+
+
     return 0;
 }
