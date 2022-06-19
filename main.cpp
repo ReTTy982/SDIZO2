@@ -63,8 +63,8 @@ int main()
 
         graph_kurskal.print();
         */
-    // Timer timer;
-    // timer.run();
+    Timer timer;
+    timer.run();
     /*
         MatrixGraph graph_matrix = MatrixGraph(false);
         ListGraph graph_list = ListGraph(false);
@@ -81,35 +81,36 @@ int main()
         graph_prim_matrix.print();
         graph_prim_list.print();
         */
-
-    MatrixGraph graph = MatrixGraph(true);
-    ListGraph graph1 = ListGraph(true);
-    RandomGraphGenerator::random(graph, graph1, 8, 75, true);
-    graph.print();
-    Array<Node> djikstra_matrix = Djikstra::getShortestPath(graph, 1);
-    for (size_t i = 0; i < djikstra_matrix.get_array_size(); i++)
-    {
-        std::cout << djikstra_matrix[i].current << " " << djikstra_matrix[i].weight << " " << djikstra_matrix[i].prev << std::endl;
-    }
-    graph1.print();
-    Array<Node> djikstra = Djikstra::getShortestPath(graph1, 1);
-    for (size_t i = 0; i < djikstra.get_array_size(); i++)
-    {
-        std::cout << djikstra[i].current << " " << djikstra[i].weight << " " << djikstra[i].prev << std::endl;
-    }
-    std::cout<<std::endl;
-    Array<Node> bellman_matrix = BellmanFord::getShortestPath(graph,1);
-     for (size_t i = 0; i < bellman_matrix.get_array_size(); i++)
-    {
-        std::cout << bellman_matrix[i].current << " " << bellman_matrix[i].weight << " " << bellman_matrix[i].prev << std::endl;
-    }
-    std::cout <<std::endl;
-    Array<Node> bellman_list = BellmanFord::getShortestPath(graph1,1);
-      for (size_t i = 0; i < bellman_list.get_array_size(); i++)
-    {
-        std::cout << bellman_list[i].current << " " << bellman_list[i].weight << " " << bellman_list[i].prev << std::endl;
-    }
-
+    /*
+        MatrixGraph graph = MatrixGraph(true);
+        ListGraph graph1 = ListGraph(true);
+        RandomGraphGenerator::random(graph, graph1, 20, 99, true);
+        graph.print();
+        Array<Node> djikstra_matrix = Djikstra::getShortestPath(graph, 1);
+        for (size_t i = 0; i < djikstra_matrix.get_array_size(); i++)
+        {
+            std::cout << djikstra_matrix[i].current << " " << djikstra_matrix[i].weight << " " << djikstra_matrix[i].prev << std::endl;
+        }
+        graph1.print();
+        Array<Node> djikstra = Djikstra::getShortestPath(graph1, 1);
+        for (size_t i = 0; i < djikstra.get_array_size(); i++)
+        {
+            std::cout << djikstra[i].current << " " << djikstra[i].weight << " " << djikstra[i].prev << std::endl;
+        }
+        std::cout<<std::endl;
+        Array<Node> bellman_matrix = BellmanFord::getShortestPath(graph,1);
+         for (size_t i = 0; i < bellman_matrix.get_array_size(); i++)
+        {
+            std::cout << bellman_matrix[i].current << " " << bellman_matrix[i].weight << " " << bellman_matrix[i].prev << std::endl;
+        }
+        std::cout <<std::endl;
+        Array<Node> bellman_list = BellmanFord::getShortestPath(graph1,1);
+          for (size_t i = 0; i < bellman_list.get_array_size(); i++)
+        {
+            std::cout << bellman_list[i].current << " " << bellman_list[i].weight << " " << bellman_list[i].prev << std::endl;
+        }
+        BellmanFord::getShortestPathTo(graph,1,4);
+    */
 
     return 0;
 }

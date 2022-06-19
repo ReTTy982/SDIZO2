@@ -6,6 +6,8 @@
 #include "AverageTimeMeasure.hpp"
 #include <vector>
 #include "Prim.hpp"
+#include "Djikstra.hpp"
+#include "BellmanFord.hpp"
 
 using namespace std;
 
@@ -18,6 +20,10 @@ template <typename Algorithm>
 const size_t generateMSTMatrix(const size_t &size, const size_t &fill);
 template <typename Algorithm>   
 const size_t generateMSTList(const size_t &size, const size_t &fill);
+template <typename Algorithm>
+const size_t generatePathMatrix(const size_t &size, const size_t &fill);
+template <typename Algorithm>
+const size_t generatePathList(const size_t &size, const size_t &fill);
 
 
 

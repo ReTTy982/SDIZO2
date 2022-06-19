@@ -11,6 +11,7 @@
 #include "Djikstra.hpp"
 #include "AverageTimeMeasure.hpp"
 #include "RandomGraphGenerator.hpp"
+#include "BellmanFord.hpp"
 
 using namespace std;
 
@@ -144,8 +145,8 @@ repeat:
         cout << "To: \n";
         auto to = getDataFromUser();
 
-        auto resultL = BellmanFord::getShortestPathFromTo(listGraph, from, to);
-        auto resultM = BellmanFord::getShortestPathFromTo(matrixGraph, from, to);
+        Node bellman_list = BellmanFord::getShortestPathTo(listGraph, from,to);
+        Node bellman_matrix = BellmanFord::getShortestPathTo(matrixGraph, from, to);
 
         resultL.print();
         resultM.print();

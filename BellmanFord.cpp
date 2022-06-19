@@ -75,3 +75,57 @@ Array<Node> BellmanFord::getShortestPath(const ListGraph &graph, const size_t &f
     }
     return pathWeights;
 }
+
+ void BellmanFord::getShortestPathTo(const MatrixGraph &graph, const size_t &from, const size_t &to){
+    Array<Node> temp = getShortestPath(graph,from);
+    Array<size_t> array;
+    array.push_front(to);
+    size_t prevVertex = temp[to].prev;
+    array.push_front(prevVertex);
+    for(size_t i = 0;i<temp.get_array_size();i++){
+        
+        size_t vertex = temp[prevVertex].prev;
+        if(vertex==from){
+            array.push_front(vertex);
+            break;
+        }
+        else{
+            array.push_front(vertex);
+            prevVertex = temp[prevVertex].prev;            
+        }
+    }
+
+    for(size_t i = 0; i< array.get_array_size()-1;i++){
+        std::cout << array[i] << "-> ";
+    }
+    std::cout << array[array.get_array_size()-1] << std::endl;
+    std::cout << "Koszt: " << temp[to].weight << std::endl;
+    
+}
+
+void BellmanFord::getShortestPathTo(const ListGraph &graph, const size_t &from, const size_t &to){
+    Array<Node> temp = getShortestPath(graph,from);
+    Array<size_t> array;
+    array.push_front(to);
+    size_t prevVertex = temp[to].prev;
+    array.push_front(prevVertex);
+    for(size_t i = 0;i<temp.get_array_size();i++){
+        
+        size_t vertex = temp[prevVertex].prev;
+        if(vertex==from){
+            array.push_front(vertex);
+            break;
+        }
+        else{
+            array.push_front(vertex);
+            prevVertex = temp[prevVertex].prev;            
+        }
+    }
+
+    for(size_t i = 0; i< array.get_array_size()-1;i++){
+        std::cout << array[i] << "-> ";
+    }
+    std::cout << array[array.get_array_size()-1] << std::endl;
+    std::cout << "Koszt: " << temp[to].weight << std::endl;
+    
+}

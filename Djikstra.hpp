@@ -1,3 +1,4 @@
+#pragma once
 #include "Array.hpp"
 #include "BinHeap.hpp"
 #include "MatrixGraph.hpp"
