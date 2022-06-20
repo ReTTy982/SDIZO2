@@ -114,3 +114,81 @@ Array<Node> Djikstra::getShortestPath(const ListGraph &graph, const size_t &from
     }
     return pathWeights;
 }
+
+void Djikstra::getShortestPathTo(const MatrixGraph &graph, const size_t &from, const size_t &to)
+{
+    Array<Node> temp = getShortestPath(graph, from);
+    if (from >= graph.getVerSize() || to >= graph.getVerSize())
+    {
+        std::cout << "Niepoprawne dane wejściowe!\n";
+        return;
+    }
+    Array<size_t> array;
+        if(temp[to].weight == SIZE_MAX){
+        std::cout<< "Sciezka nieosiagalna\n";
+        return;
+    }
+    array.push_front(to);
+    size_t prevVertex = temp[to].prev;
+
+    for (size_t i = 0; i < temp.get_array_size(); i++)
+    {
+
+        if (prevVertex == from)
+        {
+            array.push_front(prevVertex);
+            break;
+        }
+
+        size_t vertex = prevVertex;
+
+        array.push_front(vertex);
+        prevVertex = temp[vertex].prev;
+    }
+
+    for (size_t i = 0; i < array.get_array_size() - 1; i++)
+    {
+        std::cout << array[i] << "-> ";
+    }
+    std::cout << array[array.get_array_size() - 1] << std::endl;
+    std::cout << "Koszt: " << temp[to].weight << std::endl;
+}
+
+void Djikstra::getShortestPathTo(const ListGraph &graph, const size_t &from, const size_t &to)
+{
+    Array<Node> temp = getShortestPath(graph, from);
+    if (from >= graph.getVerSize() || to >= graph.getVerSize())
+    {
+        std::cout << "Niepoprawne dane wejściowe!\n";
+        return;
+    }
+    Array<size_t> array;
+    if(temp[to].weight == SIZE_MAX){
+        std::cout<< "Sciezka nieosiagalna\n";
+        return;
+    }
+    array.push_front(to);
+    size_t prevVertex = temp[to].prev;
+
+    for (size_t i = 0; i < temp.get_array_size(); i++)
+    {
+
+        if (prevVertex == from)
+        {
+            array.push_front(prevVertex);
+            break;
+        }
+
+        size_t vertex = prevVertex;
+
+        array.push_front(vertex);
+        prevVertex = temp[vertex].prev;
+    }
+
+    for (size_t i = 0; i < array.get_array_size() - 1; i++)
+    {
+        std::cout << array[i] << "-> ";
+    }
+    std::cout << array[array.get_array_size() - 1] << std::endl;
+    std::cout << "Koszt: " << temp[to].weight << std::endl;
+}

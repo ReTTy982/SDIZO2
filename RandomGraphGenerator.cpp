@@ -10,6 +10,14 @@ size_t RandomGraphGenerator::randomNumberWithinRange(const size_t &first, const 
 
 void RandomGraphGenerator::random(MatrixGraph &mgraph, ListGraph &lgraph, size_t vertexCount, size_t fillFactor, const bool &isDirected)
 {
+    if(fillFactor>99){
+        std::cout << "Gestosc nie moze byc wieksza niz 99\n";
+        return;
+    }
+    if(vertexCount<=1){
+        std::cout << "Niepoprawne dane wejsciowe\n";
+        return;
+    }
 
     size_t edges;
     edges = vertexCount * (vertexCount - 1);

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -15,7 +16,29 @@
 
 using namespace std;
 
+void readFromFile(ListGraph &listGraph, MatrixGraph &matrixGraph)
+{
+    string fileName;
 
+    cout << "Enter file name\n";
+    cin >> fileName;
+
+    ifstream file(fileName);
+    if (!file.is_open())
+        throw std::runtime_error("File doesnt exist");
+
+    size_t edges, vertices;
+    file >> edges >> vertices;
+
+    for (; edges > 0; edges--) {
+        size_t from, to;
+        long long weight;
+        file >> from >> to >> weight;
+
+        listGraph.addEdge(from, to, weight);
+        matrixGraph.addEdge(from, to, weight);
+    }
+}
 
 
 long long getDataFromUser()
@@ -65,7 +88,7 @@ repeat:
     case 'r':
         listGraph.clear();
         matrixGraph.clear();
-        //readFromFile(listGraph, matrixGraph);
+        readFromFile(listGraph, matrixGraph);
         break;
     case 'x': {
         listGraph.clear();
@@ -145,11 +168,8 @@ repeat:
         cout << "To: \n";
         auto to = getDataFromUser();
 
-        Node bellman_list = BellmanFord::getShortestPathTo(listGraph, from,to);
-        Node bellman_matrix = BellmanFord::getShortestPathTo(matrixGraph, from, to);
-
-        resultL.print();
-        resultM.print();
+        BellmanFord::getShortestPathTo(listGraph, from,to);
+        BellmanFord::getShortestPathTo(matrixGraph, from, to);
 
         break;
     }
@@ -159,11 +179,9 @@ repeat:
         cout << "To: \n";
         auto to = getDataFromUser();
 
-        auto resultL = Dijkstra::getShortestPathFromTo(listGraph, from, to);
-        auto resultM = Dijkstra::getShortestPathFromTo(matrixGraph, from, to);
+        Djikstra::getShortestPathTo(listGraph, from, to);
+        Djikstra::getShortestPathTo(matrixGraph, from, to);
 
-        resultL.print();
-        resultM.print();
 
         break;
     }
@@ -186,8 +204,8 @@ int menu()
     input = getOptionFromUser();
 
     if (input == 'b') {
-        TimeBenchmark bench;
-        bench.run();
+        Timer timer;
+        timer.run();
         return 0;
     }
 
