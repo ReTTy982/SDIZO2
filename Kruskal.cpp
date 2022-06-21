@@ -8,20 +8,22 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
     const size_t &vert = graph.getVerSize();
     const IndicenceMatrix &matrix = graph.getMatrix();
 
-    MatrixGraph mstGraph = MatrixGraph(false);
+    MatrixGraph mstGraph = MatrixGraph(false); // inicjacja grafu nieskierowanego
 
-    BinHeap<Edge> queue;
+    BinHeap<Edge> queue; // kolejka priorytetowa do przetworzenia krawedzi grafu
 
-    DisjointSets unionArray(vert);
+    DisjointSets unionArray(vert); 
     if (vert == 0)
     {
         return mstGraph;
     }
 
-    for (size_t vertex = 0; vertex < vert; vertex++)
+    for (size_t vertex = 0; vertex < vert; vertex++) // petla dodajaca krawedzie grafu do kolejki priorytetowej
     {
         for (size_t edge = 0; edge < edges; edge++)
         {
+// Na samej gorze kolejki sa najlzejsze krawedzie, algorytm dodaje tutaj niestety wszystkie krawedzie
+// wiec niepotrzebenie tracimy tutaj czas.
 
             if (matrix[vertex][edge] > 0)
             {
@@ -30,9 +32,9 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
             }
         }
     }
-    for (size_t addedEdges = 0; addedEdges < vert - 1;)
+    for (size_t addedEdges = 0; addedEdges < vert - 1;) // liczba krawedzi bedzie zawsze o 1 mniejsza niz liczba wierzcholkow w MST
     {
-        // trzeba wyjatek na puste
+        // Petla sprawdzajaca czy dane krawedzie nie tworza cyklu i laczaca je w zbiory
 
         const auto &node = queue.top();
 
@@ -47,7 +49,7 @@ MatrixGraph Kruskal::generateMST(const MatrixGraph &graph)
             mstGraph.addEdge(node.from, node.to, node.weight);
             addedEdges++;
         }
-        queue.pop(0);
+        queue.pop(0); // krawedz usuwana jest za kazdym obiegiem petli
     }
     return mstGraph;
 }

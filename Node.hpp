@@ -3,6 +3,8 @@
 #include "MatrixGraph.hpp"
 #include "ListGraph.hpp"
 
+// struktura pomocnicza na bazie ktorej buduje tablice poprzednikow i wagi w algorytmach szukania sciezek
+
 struct Node
 {
     size_t weight = SIZE_MAX;

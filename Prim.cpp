@@ -8,14 +8,14 @@ MatrixGraph Prim::generateMST(const MatrixGraph &graph)
     const IndicenceMatrix &matrix = graph.getMatrix();
 
     MatrixGraph mstGraph = MatrixGraph(false);
-    BinHeap<Edge> queue;
-    Array<bool> visited;
+    BinHeap<Edge> queue; // kolejka priorytetowa przetrzymujaca krawedzie wierzcholkow juz prztworzonych
+    Array<bool> visited; // tablica booli pokazujaca ktore wierzcholki odwiedzilismy
     for (size_t i = 0; i < vert; i++)
     {
         visited.push_back(false);
     }
 
-    for (size_t j = 0; j < vert; j++)
+    for (size_t j = 0; j < vert; j++) // petla ktora dodaje krawedzie pierwszego wierzcholka do kolejki
     {
         for (size_t i = 0; i < vert; i++)
         {
@@ -26,20 +26,20 @@ MatrixGraph Prim::generateMST(const MatrixGraph &graph)
         }
         if (queue.get_array().get_array_size() != 0)
         {
-            visited[j] = true;
+            visited[j] = true; // j to nasz startowy wierzcholek, odwiedzamy go wiec ustawiamy jego wartosc w tablicy visited na true
             break;
         }
     }
     for (size_t addedEdges = 0; addedEdges < vert - 1;)
     {
-        Edge candidate = queue.top();
+        Edge candidate = queue.top(); // Bierzemy najmniejsza dostepna krawedz, usuwamy ja i sprawdzamy czy idzie do nieodwiedzonego wierzchlka
         queue.pop(0);
 
-        if (!visited[candidate.to])
+        if (!visited[candidate.to]) // jesli tak to ustawiamy wartosc w visted koncowego wierzcholka na true i dodajemy krawedz do grafu
         {
             visited[candidate.to] = true;
             mstGraph.addEdge(candidate.from, candidate.to, candidate.weight);
-            for (size_t i = 0; i < vert; i++)
+            for (size_t i = 0; i < vert; i++) // dodajemy wszystkie krawedzie nowo odwiedzonego wierzcholka do kolejki
             {
                 if (matrix[candidate.to][i] != 0)
                 {

@@ -2,10 +2,10 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const vector<size_t> graphSize = {50, 70, 100, 120, 150};
+const vector<size_t> graphSize = {50, 100, 150, 200, 250};
 const vector<size_t> fillFactor = {25, 50, 75, 99};
 
-const size_t datasetGenerationloops = 5;
+const size_t datasetGenerationloops = 20;
 
 template <typename Algorithm>
 const size_t Timer::generateMSTMatrix(const size_t &size, const size_t &fill)

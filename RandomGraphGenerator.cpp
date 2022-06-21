@@ -3,6 +3,7 @@
 const static size_t MAX_COST = 100;
 
 size_t RandomGraphGenerator::randomNumberWithinRange(const size_t &first, const size_t &second)
+// generator losowych liczb
 {
     std::uniform_int_distribution<size_t> distribution(first, second);
     return distribution(generator);
@@ -20,9 +21,9 @@ void RandomGraphGenerator::random(MatrixGraph &mgraph, ListGraph &lgraph, size_t
     }
 
     size_t edges;
-    edges = vertexCount * (vertexCount - 1);
+    edges = vertexCount * (vertexCount - 1); // obliczanie ilosci potrzebnych krawedzi
 
-    if (!isDirected)
+    if (!isDirected) // dwa razy mniej dla grafu nieskierowanego
     {
         edges /= 2;
     }
@@ -35,11 +36,11 @@ void RandomGraphGenerator::random(MatrixGraph &mgraph, ListGraph &lgraph, size_t
         neededVert.push_back(i);
         aviableVert.push_back(i);
     }
-
+    // mieszanie wartosci w tablicach potrzebnych i dostepnych wierzcholkow
     std::shuffle(neededVert.begin(), neededVert.end(), generator);
     std::shuffle(aviableVert.begin(), aviableVert.end(), generator);
 
-    while (neededVert.size() != 1)
+    while (neededVert.size() != 1) // konstrukcja grafu spojnego
     {
         size_t from = neededVert.back();
         neededVert.pop_back();
@@ -58,6 +59,8 @@ void RandomGraphGenerator::random(MatrixGraph &mgraph, ListGraph &lgraph, size_t
         edges--;
     }
     const IndicenceMatrix &matrix = mgraph.getMatrix();
+
+    // petla znajdujaca dostepne jeszcze krawedzie i losowo dodajaca je do grafu
     while (edges != 0)
     {
         size_t from = aviableVert.back();
